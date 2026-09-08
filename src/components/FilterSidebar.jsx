@@ -53,6 +53,31 @@ export default function FilterSidebar({ filters, onChange, onSubmit }) {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
+          <label className="text-xs font-medium text-gray-600">Min bedrooms</label>
+          <input
+            type="number"
+            min="0"
+            value={filters.minBedrooms || ''}
+            onChange={(e) => set('minBedrooms', e.target.value)}
+            placeholder="Any"
+            className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
+          />
+        </div>
+        <div>
+          <label className="text-xs font-medium text-gray-600">Min bathrooms</label>
+          <input
+            type="number"
+            min="0"
+            value={filters.minBathrooms || ''}
+            onChange={(e) => set('minBathrooms', e.target.value)}
+            placeholder="Any"
+            className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div>
           <label className="text-xs font-medium text-gray-600">Min rent</label>
           <input
             type="number"

@@ -61,18 +61,23 @@ export default function PropertyCard({ property, featured = false }) {
           {property.estate}, {property.city}
         </p>
 
-        {property.features?.length > 0 && (
-          <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-gray-500">
-            {property.features.slice(0, 3).map((f) => (
-              <span key={f} className="flex items-center gap-1 capitalize">
-                {f.toLowerCase() === 'parking' && <Car size={14} />}
-                {f.toLowerCase() === 'water' && <Bath size={14} />}
-                {!['parking', 'water'].includes(f.toLowerCase()) && <BedDouble size={14} />}
-                {f}
-              </span>
-            ))}
-          </div>
-        )}
+        <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-gray-500">
+          {property.bedrooms != null && (
+            <span className="flex items-center gap-1">
+              <BedDouble size={14} /> {property.bedrooms}
+            </span>
+          )}
+          {property.bathrooms != null && (
+            <span className="flex items-center gap-1">
+              <Bath size={14} /> {property.bathrooms}
+            </span>
+          )}
+          {property.features?.includes('parking') && (
+            <span className="flex items-center gap-1">
+              <Car size={14} /> Parking
+            </span>
+          )}
+        </div>
       </div>
     </Link>
   );

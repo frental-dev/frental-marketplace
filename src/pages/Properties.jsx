@@ -15,6 +15,8 @@ export default function Properties() {
     houseType: searchParams.get('houseType') || undefined,
     minRent: searchParams.get('minRent') || undefined,
     maxRent: searchParams.get('maxRent') || undefined,
+    minBedrooms: searchParams.get('minBedrooms') || undefined,
+    minBathrooms: searchParams.get('minBathrooms') || undefined,
   });
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const [data, setData] = useState({ results: [], pagination: null });

@@ -34,17 +34,6 @@ export async function getAgentPublicProfile(slug) {
 }
 
 /**
- * Public agent profile — matches GET /api/agents/public/:slug (not under
- * /marketplace, but still fully public/unauthenticated). Includes the
- * agent's available properties with media.
- */
-export async function getPublicAgent(slug) {
-  const res = await fetch(`${API_BASE}/agents/public/${slug}`);
-  if (!res.ok) throw new Error(`Failed to load agent (${res.status})`);
-  return res.json(); // { agent }
-}
-
-/**
  * Public inquiry — matches POST /api/leads/public. Used by a "Contact agent"
  * or "Request viewing" form on a property detail page.
  */

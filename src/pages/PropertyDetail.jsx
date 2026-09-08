@@ -70,6 +70,16 @@ export default function PropertyDetail() {
                   <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700">
                     {HOUSE_TYPE_LABELS[property.houseType]}
                   </span>
+                  {property.bedrooms != null && (
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+                      {property.bedrooms} bed{property.bedrooms === 1 ? '' : 's'}
+                    </span>
+                  )}
+                  {property.bathrooms != null && (
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
+                      {property.bathrooms} bath{property.bathrooms === 1 ? '' : 's'}
+                    </span>
+                  )}
                   <span className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
                     Deposit: KSh {property.deposit.toLocaleString()}
                   </span>
