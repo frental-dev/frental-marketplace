@@ -2,7 +2,7 @@
 // fallback below is a best guess at the new Render account's prod URL
 // (service name frental-backend-prod), not guaranteed correct. Confirm the
 // actual URL and set it explicitly rather than relying on this default.
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://frental-backend-prod.onrender.com/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 /**
  * Public, unauthenticated marketplace search — matches GET /api/marketplace/properties
@@ -11,7 +11,11 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://frental-backend-p
  */
 export async function searchProperties(filters = {}) {
   const params = new URLSearchParams(
-    Object.fromEntries(Object.entries(filters).filter(([, v]) => v !== undefined && v !== null && v !== ''))
+    Object.fromEntries(
+      Object.entries(filters).filter(
+        ([, v]) => v !== undefined && v !== null && v !== "",
+      ),
+    ),
   );
   const res = await fetch(`${API_BASE}/marketplace/properties?${params}`);
   if (!res.ok) throw new Error(`Failed to load properties (${res.status})`);
@@ -43,9 +47,15 @@ export async function getAgentPublicProfile(slug) {
  */
 export async function submitInquiry({ propertyId, name, phone, message }) {
   const res = await fetch(`${API_BASE}/leads/public`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ propertyId, source: 'MARKETPLACE', name, phone, message }),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      propertyId,
+      source: "MARKETPLACE",
+      name,
+      phone,
+      message,
+    }),
   });
   if (!res.ok) throw new Error(`Failed to submit inquiry (${res.status})`);
   return res.json();
