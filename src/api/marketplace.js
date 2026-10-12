@@ -1,4 +1,8 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://frental-backend.onrender.com/api';
+// VITE_API_BASE_URL should be set explicitly in Vercel's env vars — the
+// fallback below is a best guess at the new Render account's prod URL
+// (service name frental-backend-prod), not guaranteed correct. Confirm the
+// actual URL and set it explicitly rather than relying on this default.
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://frental-backend-prod.onrender.com/api/v1';
 
 /**
  * Public, unauthenticated marketplace search — matches GET /api/marketplace/properties

@@ -13,7 +13,8 @@ export default function Pagination({ pagination, onPageChange }) {
       <button
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
-        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-600 disabled:opacity-40"
+        aria-label="Previous page"
+        className="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 text-gray-600 disabled:opacity-40"
       >
         <ChevronLeft size={16} />
       </button>
@@ -23,7 +24,8 @@ export default function Pagination({ pagination, onPageChange }) {
           {i > 0 && pages[i - 1] !== p - 1 && <span className="px-1 text-gray-400">…</span>}
           <button
             onClick={() => onPageChange(p)}
-            className={`flex h-9 w-9 items-center justify-center rounded-lg text-sm ${
+            aria-current={p === page ? 'page' : undefined}
+            className={`flex h-11 w-11 items-center justify-center rounded-lg text-sm ${
               p === page ? 'bg-brand-700 text-white' : 'border border-gray-200 text-gray-700 hover:border-gray-300'
             }`}
           >
@@ -35,7 +37,8 @@ export default function Pagination({ pagination, onPageChange }) {
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}
-        className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 text-gray-600 disabled:opacity-40"
+        aria-label="Next page"
+        className="flex h-11 w-11 items-center justify-center rounded-lg border border-gray-200 text-gray-600 disabled:opacity-40"
       >
         <ChevronRight size={16} />
       </button>

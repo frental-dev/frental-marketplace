@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { SlidersHorizontal, X } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FilterSidebar from '../components/FilterSidebar';
@@ -21,6 +22,9 @@ export default function Properties() {
   const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
   const [data, setData] = useState({ results: [], pagination: null });
   const [status, setStatus] = useState('loading');
+  // Below md, the filter panel is collapsed by default so listings aren't
+  // pushed below the fold — always visible at md and up, unchanged.
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -58,8 +62,18 @@ export default function Properties() {
             : 'Searching listings…'}
         </p>
 
+        <button
+          onClick={() => setMobileFiltersOpen((open) => !open)}
+          className="mt-4 flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg border border-gray-200 text-sm font-medium text-gray-700 md:hidden"
+        >
+          {mobileFiltersOpen ? <X size={16} /> : <SlidersHorizontal size={16} />}
+          {mobileFiltersOpen ? 'Hide filters' : 'Filters'}
+        </button>
+
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-[260px_1fr]">
-          <FilterSidebar filters={filters} onChange={setFilters} onSubmit={() => setPage(1)} />
+          <div className={`${mobileFiltersOpen ? 'block' : 'hidden'} md:block`}>
+            <FilterSidebar filters={filters} onChange={setFilters} onSubmit={() => setPage(1)} />
+          </div>
 
           <div>
             {status === 'loading' && (
