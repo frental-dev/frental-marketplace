@@ -1,7 +1,17 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+/* @import "tailwindcss";
 
 body {
   -webkit-font-smoothing: antialiased;
+} */
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+html,
+body,
+#root {
+  min-height: 100%;
 }

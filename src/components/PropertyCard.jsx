@@ -41,7 +41,7 @@ export default function PropertyCard({ property, featured = false }) {
             e.preventDefault();
             toggleSaved(property.id);
           }}
-          className={`absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 hover:text-brand-700 ${
+          className={`absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 hover:text-brand-700 ${
             saved ? 'text-brand-700' : 'text-gray-500'
           }`}
           aria-label={saved ? 'Remove from saved' : 'Save property'}

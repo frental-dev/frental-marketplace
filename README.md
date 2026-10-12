@@ -84,6 +84,24 @@ Every property's `media` array already includes a ready-to-use `url` and
 image is being served from Cloudinary or MinIO/R2 fallback, that's resolved
 server-side.
 
+## Observability
+
+An `ErrorBoundary` wraps the whole app (`src/main.jsx`) — a render error
+anywhere shows a recoverable "Something went wrong" screen with a reload
+button, instead of a blank white page.
+
+Error tracking via Sentry is opt-in: set `VITE_SENTRY_DSN` in Vercel's env
+vars (build-time — requires a redeploy to take effect) and `src/observability.js`
+initializes it on load. Unset by default, and verified to contribute zero
+bytes to the production bundle when left unset — see the comment in that
+file for how that was confirmed.
+
+## Versioning
+
+The app version comes from `package.json` (`vite.config.js` injects it as
+`__APP_VERSION__` at build time) and shows in the footer. Bump it and add
+an entry to `CHANGELOG.md` for any user-facing change.
+
 ## Design notes
 
 Built to match the provided mockup as closely as possible with Tailwind
